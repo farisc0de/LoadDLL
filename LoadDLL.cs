@@ -1,15 +1,15 @@
-public object LoadDLL(byte[] PluginBytes, string typeName, string methodName, bool hasParamters = false, Dictionary<object, object> paramters = null)
+public object LoadDLL(byte[] PluginBytes, string className, string methodName, Dictionary<object, object> parameters = null)
 {
     var p = System.Reflection.Assembly.Load(PluginBytes);
 
     Type[] rootTypes = p.GetTypes();
 
-    var ci = p.CreateInstance(Strings.Split(rootTypes[0].Namespace, ".")(0) + "." + typeName);
+    var ci = p.CreateInstance(Strings.Split(rootTypes[0].Namespace, ".")(0) + "." + className);
 
-    if (hasParamters == true)
+    if (parameters != null)
     {
-        foreach (var paramter in paramters)
-            Interaction.CallByName(ci, paramter.Key, CallType.Set, paramter.Value);
+        foreach (var parameter in parameters)
+            Interaction.CallByName(ci, parameter.Key, CallType.Set, parameter.Value);
     }
 
     object obj = Interaction.CallByName(ci, methodName, CallType.Method);
