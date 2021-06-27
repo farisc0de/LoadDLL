@@ -11,7 +11,7 @@ LoadDLL(IO.File.ReadAllBytes("Plugin.dll"), "Class1", "Run")
 
 With Parameters
 ```
-LoadDLL(IO.File.ReadAllBytes("Plugin.dll"), "Class1", "Run", True, New Dictionary(Of Object, Object)() From {
+LoadDLL(IO.File.ReadAllBytes("Plugin.dll"), "Class1", "Run", New Dictionary(Of Object, Object)() From {
          {"var1", "hello"},
          {"var2", "world"}
 })
